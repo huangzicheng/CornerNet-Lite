@@ -44,41 +44,19 @@ class VOC(DETECTION):
             #  'bicycle', 'car', 'motorcycle', 'airplane',
             # 'bus', 'train', 'truck', 'boat', 'traffic light',
             # 'fire hydrant', 'stop sign', 'parking meter', 'bench',
-            # 'bird', 'cat', 'dog', 'horse','sheep', 'cow', 'elephant',
-            # 'bear', 'zebra','giraffe', 'backpack', 'umbrella',
-            # 'handbag', 'tie', 'suitcase', 'frisbee', 'skis',
-            # 'snowboard','sports ball', 'kite', 'baseball bat',
-            # 'baseball glove', 'skateboard', 'surfboard',
-            # 'tennis racket', 'bottle', 'wine glass', 'cup', 'fork',
-            # 'knife', 'spoon', 'bowl', 'banana', 'apple', 'sandwich',
-            # 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
-            # 'donut', 'cake', 'chair', 'couch', 'potted plant',
-            # 'bed', 'dining table', 'toilet', 'tv', 'laptop',
-            # 'mouse', 'remote', 'keyboard', 'cell phone', 'microwave',
-            # 'oven', 'toaster', 'sink', 'refrigerator', 'book',
-            # 'clock', 'vase', 'scissors', 'teddy bear', 'hair drier',
-            # 'toothbrush'
+
         ]
 
-        # self._cls2voc  = {1:1,}
-        # self._voc2cls  = {1:1,}
-        # self._voc2name = {1:'person',}
-        # self._name2voc = {1:'person',}
         self._cls2voc  = {ind + 1: voc_id for ind, voc_id in enumerate(self._voc_cls_ids)}
         self._voc2cls  = {voc_id: cls_id for cls_id, voc_id in self._cls2voc.items()}
         self._voc2name = {cls_id: cls_name for cls_id, cls_name in zip(self._voc_cls_ids, self._voc_cls_names)}
         self._name2voc = {cls_name: cls_id for cls_name, cls_id in self._voc2name.items()}
 
         if split is not None:
-            voc_dir = os.path.join('/home/rock/CornerNet-Lite-master/data/', "coco_pd")
-            #coco_dir='/media/diskData/huanglong_data/coco'
-            # self._split     = {
-            #     "trainval": "train2017",
-            #     "minival":  "",
-            #     "testdev":  "val2017"
-            # }[split]
+            voc_dir = os.path.join('/home/rock/CornerNet-Lite-master/data/', "VOC2012")
+
             self._data_dir  = os.path.join(voc_dir, 'images')
-            # '/home/rock/CornerNet-Lite-master/data/coco_pd/Annotations'
+          
             self.xml_path = os.path.join(voc_dir, "Annotations")
 
             self._detections, self._eval_ids = self._load_voc_annos()
@@ -90,7 +68,7 @@ class VOC(DETECTION):
         eval_ids = {}
         detections = {}
         i = 0
-        xml_path='/home/rock/CornerNet-Lite-master/data/coco_pd/Annotations'
+        xml_path='/home/rock/CornerNet-Lite-master/data/VOC2012/Annotations'
         for f in os.listdir(xml_path):
             res = []
             if not f.endswith('.xml'):
@@ -183,8 +161,6 @@ class VOC(DETECTION):
     def cls2name(self, cls):
         voc = self._cls2voc[cls]
         return self._voc2name[voc]
-    # def cls2name(self, cls):
-    #     return "person"
 
 
 if __name__ == '__main__':
