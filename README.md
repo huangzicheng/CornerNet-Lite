@@ -1,7 +1,7 @@
 # CornerNet-Lite
 training for VOC dataset
 
-The code is an extension of the [CornerNet-lite](https://github.com/princeton-vl/CornerNet-Lite) network datasetloader
+The code is an extension of the [CornerNet-lite](https://github.com/princeton-vl/CornerNet-Lite) network dataloader
 
 1.if you want to  train VOC dataset,please add the code in ~/core/db/
 2.change ~/config/CornerNet_Squeeze.json
