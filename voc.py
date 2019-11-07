@@ -1,4 +1,10 @@
 
+# -*- coding: utf-8 -*-
+# @Time    : 2019/8/27 10：48
+# @Author  :Rock
+# @File    : voc.py
+# just for object detection
+
 import os
 import json
 import numpy as np
@@ -8,7 +14,6 @@ from ..paths import get_file_path
 
 
 import xml.etree.ElementTree as ET
-import os
 import json
 
 
