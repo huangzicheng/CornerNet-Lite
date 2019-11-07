@@ -15,7 +15,7 @@ The code is an extension of the [CornerNet-lite](https://github.com/princeton-vl
          "categories": x,  #x is your dataset categories
 }
 ```
-3. change ~/core/models/CornerNet_Squeeze.py   in 94~95 rows
+3. change ~/core/models/CornerNet_Squeeze.py   in 94-95 rows
 ```bash
 tl_heats = nn.ModuleList([self._pred_mod(X) for _ in range(stacks)])   #x is your dataset categories
 br_heats = nn.ModuleList([self._pred_mod(X) for _ in range(stacks)])
