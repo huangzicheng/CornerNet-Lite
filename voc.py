@@ -28,34 +28,27 @@ class VOC(DETECTION):
         ], dtype=np.float32)
 
         self._voc_cls_ids = [
-            1,
-            #  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13,
-            # 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
-            # 24, 25, 27, 28, 31, 32, 33, 34, 35, 36,
-            # 37, 38, 39, 40, 41, 42, 43, 44, 46, 47,
-            # 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
-            # 58, 59, 60, 61, 62, 63, 64, 65, 67, 70,
-            # 72, 73, 74, 75, 76, 77, 78, 79, 80, 81,
-            # 82, 84, 85, 86, 87, 88, 89, 90
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12, 13,
+            14, 15, 16, 17, 18, 19, 20, 
         ]
 
         self._voc_cls_names = [
-            'person',
-            #  'bicycle', 'car', 'motorcycle', 'airplane',
-            # 'bus', 'train', 'truck', 'boat', 'traffic light',
-            # 'fire hydrant', 'stop sign', 'parking meter', 'bench',
+                      'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
+                       'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse',
+                       'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train',
+                       'tvmonitor',
 
         ]
 
         self._cls2voc  = {ind + 1: voc_id for ind, voc_id in enumerate(self._voc_cls_ids)}
         self._voc2cls  = {voc_id: cls_id for cls_id, voc_id in self._cls2voc.items()}
         self._voc2name = {cls_id: cls_name for cls_id, cls_name in zip(self._voc_cls_ids, self._voc_cls_names)}
-        self._name2voc = {cls_name: cls_id for cls_name, cls_id in self._voc2name.items()}
+        self._name2voc = {cls_name: cls_id for cls_id, cls_name in self._voc2name.items()}
 
         if split is not None:
             voc_dir = os.path.join('/home/rock/CornerNet-Lite-master/data/', "VOC2012")
 
-            self._data_dir  = os.path.join(voc_dir, 'images')
+            self._data_dir  = os.path.join(voc_dir, 'JPEGImages')
           
             self.xml_path = os.path.join(voc_dir, "Annotations")
 
@@ -127,7 +120,7 @@ class VOC(DETECTION):
                         if current_sub == 'bndbox':
                             if bndbox[option.tag] is not None:
                                 raise Exception('xml structure corrupted at bndbox tag.')
-                            bndbox[option.tag] = int(option.text)
+                            bndbox[option.tag] = int(float(option.text))
 
                             # only after parse the <object> tag
                     if bndbox['xmin'] is not None:
@@ -141,7 +134,7 @@ class VOC(DETECTION):
                         bbox.append(bndbox['xmax'])
                         # h
                         bbox.append(bndbox['ymax'])
-                        category = self._name2voc[file_name]
+                        category = self._name2voc[object_name]
                         bbox.append(category)
                         res.append(bbox)
                         # print(res)
