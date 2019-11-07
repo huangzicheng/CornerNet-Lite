@@ -22,6 +22,6 @@ The code is an extension of the [CornerNet-lite](https://github.com/princeton-vl
     self._voc_cls_ids = [ 1, .....]    #give your ids
     self._voc_cls_names = [ 'person', ....]  # give your labels
     voc_dir = os.path.join('/home/rock/CornerNet-Lite-master/data/', "VOC2012")  # the path of your dataset 
-    self._data_dir  = os.path.join(voc_dir, 'images')   # training iamge
+    self._data_dir  = os.path.join(voc_dir, 'JPEGImages')   # training iamge
     self.xml_path = os.path.join(voc_dir, "Annotations")   # the path of xml file
     }
